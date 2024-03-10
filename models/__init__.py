@@ -4,7 +4,7 @@
 Initializing Storage module as a global (singleton) Object
 """
 
-from .file_storage import FileStorage
+from .engine.file_storage import FileStorage
 """
 Retrieve storage instance
 """
