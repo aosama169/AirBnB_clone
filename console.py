@@ -75,6 +75,20 @@ class HBNBCommand(Cmd):
             print("** Too many argument for show **")
             pass
 
+    def do_all(self, args):
+        """Display string representations of all instances of a given class.
+        If no class is specified, display all initiated objects."""
+        args, n = parse(args)
+
+        if n < 2:
+            try:
+                print(storage.find_all(*args))
+            except ModelNotFoundError:
+                print("** class does not exist **")
+        else:
+            print("** Too many argument for all **")
+            pass
+
     def do_destroy(self, arg):
         """Delete an Instance of Model base on sent ModelName and id."""
         args, n = parse(arg)
@@ -92,20 +106,6 @@ class HBNBCommand(Cmd):
                 print("** no instance is found **")
         else:
             print("** Too many argument for destroy **")
-            pass
-
-    def do_all(self, args):
-        """Display string representations of all instances of a given class.
-        If no class is specified, display all initiated objects."""
-        args, n = parse(args)
-
-        if n < 2:
-            try:
-                print(storage.find_all(*args))
-            except ModelNotFoundError:
-                print("** class does not exist **")
-        else:
-            print("** Too many argument for all **")
             pass
 
     def do_update(self, arg):
@@ -167,7 +167,7 @@ class HBNBCommand(Cmd):
 
 
 def parse(line: str):
-    """Split lines by spaces and return"""
+    """Split lines by spaces a"""
     args = shlex.split(line)
     return args, len(args)
 
