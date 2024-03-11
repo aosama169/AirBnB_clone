@@ -42,15 +42,15 @@ class HBNBCommand(Cmd):
         args, n = parse(args)
 
         if not n:
-            print("** class name is missing **")
+            print("** class name missing **")
         elif args[0] not in classes:
-            print("** class does not exist **")
+            print("** class doesn't exist **")
         elif n == 1:
             temp = eval(args[0])()
             print(temp.id)
             temp.save()
         else:
-            print("** Too many arguments for create call **")
+            print("** Too many argument for create **")
             pass
 
     def do_show(self, arg):
@@ -68,7 +68,7 @@ class HBNBCommand(Cmd):
                 inst = storage.find_by_id(*args)
                 print(inst)
             except ModelNotFoundError:
-                print("** class does not exist **")
+                print("** class doesn't exist **")
             except InstanceNotFoundError:
                 print("** no instance found **")
         else:
@@ -84,7 +84,7 @@ class HBNBCommand(Cmd):
             try:
                 print(storage.find_all(*args))
             except ModelNotFoundError:
-                print("** class does not exist **")
+                print("** class doesn't exist **")
         else:
             print("** Too many argument for all **")
             pass
@@ -94,16 +94,16 @@ class HBNBCommand(Cmd):
         args, n = parse(arg)
 
         if not n:
-            print("** class name is missing **")
+            print("** class name missing **")
         elif n == 1:
-            print("** instance id is missing **")
+            print("** instance id missing **")
         elif n == 2:
             try:
                 storage.delete_by_id(*args)
             except ModelNotFoundError:
-                print("** class does not exist **")
+                print("** class doesn't exist **")
             except InstanceNotFoundError:
-                print("** no instance is found **")
+                print("** no instance found **")
         else:
             print("** Too many argument for destroy **")
             pass
@@ -113,20 +113,20 @@ class HBNBCommand(Cmd):
         Throws error for missing arguments"""
         args, n = parse(arg)
         if not n:
-            print("** class name is missing **")
+            print("** class name missing **")
         elif n == 1:
-            print("** instance id is missing **")
+            print("** instance id missing **")
         elif n == 2:
-            print("** attribute name is missing **")
+            print("** attribute name missing **")
         elif n == 3:
             print("** value missing **")
         else:
             try:
                 storage.update_one(*args[0:4])
             except ModelNotFoundError:
-                print("** class does not exist **")
+                print("** class doesn't exist **")
             except InstanceNotFoundError:
-                print("** no instance is found **")
+                print("** no instance found **")
 
     def default(self, arg):
         """Override default method to handle class methods"""
@@ -154,15 +154,15 @@ class HBNBCommand(Cmd):
                     break
             return
         except AttributeError:
-            print("** invalid method call **")
+            print("** invalid method **")
         except InstanceNotFoundError:
-            print("** no instances is found **")
+            print("** no instance found **")
         except TypeError as te:
             field = te.args[0].split()[-1].replace("_", " ")
             field = field.strip("'")
-            print(f"** {field} is missing **")
+            print(f"** {field} missing **")
         except Exception as e:
-            print("** invalid syntax error **")
+            print("** invalid syntax **")
             pass
 
 
