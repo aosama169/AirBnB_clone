@@ -57,8 +57,10 @@ class BaseModel:
         """Returns dictionary representation of self obj"""
         tempObj = {**self.__dict__}
         tempObj['__class__'] = type(self).__name__
-        tempObj['created_at'] = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
-        tempObj['updated_at'] = self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
+        tempObj['created_at'] = self.created_at.strftime(
+            '%Y-%m-%dT%H:%M:%S.%f')
+        tempObj['updated_at'] = self.updated_at.strftime(
+            '%Y-%m-%dT%H:%M:%S.%f')
         return tempObj
 
     @classmethod
