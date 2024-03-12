@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" unittest for base model class and methods """
+""" unittest for base model class and methods"""
 
 
 import unittest
