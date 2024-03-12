@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" unittest for base model class and methods"""
+""" unittest for base model class and method"""
 
 
 import unittest
@@ -16,10 +16,10 @@ from uuid import uuid4
 
 
 class TestBaseModel(unittest.TestCase):
-    """ define unittests for base model """
+    """ define unittest for base model """
 
     def setUp(self):
-        """ setup for the ongoing tests """
+        """ setup for ongoing tests """
         self.model = BaseModel()
         self.model.name = "My Base Model"
         self.model.my_number = 95
@@ -27,14 +27,6 @@ class TestBaseModel(unittest.TestCase):
     def test_id_type(self):
         """ test for id variable type """
         self.assertEqual(type(self.model.id), str)
-
-    def test_created_at_type(self):
-        """ test for created at variable type """
-        self.assertEqual(type(self.model.created_at), datetime)
-
-    def test_updated_at_type(self):
-        """ test for updated at variable type """
-        self.assertEqual(type(self.model.updated_at), datetime)
 
     def test_name_type(self):
         """ test for name variable type """
@@ -44,15 +36,19 @@ class TestBaseModel(unittest.TestCase):
         """ test for my number variable type """
         self.assertEqual(type(self.model.my_number), int)
 
+    def test_created_at_type(self):
+        """ test for created at variable type """
+        self.assertEqual(type(self.model.created_at), datetime)
+
+    def test_updated_at_type(self):
+        """ test for updated at variable type """
+        self.assertEqual(type(self.model.updated_at), datetime)
+
     def test_save_updates_updated_at(self):
         """ test for save updated at variable """
         old_updated_at = self.model.updated_at
         self.model.save()
         self.assertNotEqual(old_updated_at, self.model.updated_at)
-
-    def test_to_dict_returns_dict(self):
-        """ test for to dictionary return variable type """
-        self.assertEqual(type(self.model.to_dict()), dict)
 
     def test_to_dict_contains_correct_keys(self):
         """ test for dictionary containing correct keys """
@@ -63,6 +59,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn('name', model_dict)
         self.assertIn('my_number', model_dict)
         self.assertIn('__class__', model_dict)
+
+    def test_to_dict_returns_dict(self):
+        """ test for to dictionary return variable type """
+        self.assertEqual(type(self.model.to_dict()), dict)
 
     def test_to_dict_created_at_format(self):
         """ testing for created at format found """
@@ -88,18 +88,18 @@ class TestBaseModelTwo(unittest.TestCase):
         """ test for id generation type """
         self.assertIsInstance(self.my_model.id, str)
 
-    def test_str_representation(self):
-        """ test for str rrepresentation """
-        expected = "[BaseModel] ({}) {}".format(
-            self.my_model.id, self.my_model.__dict__)
-        self.assertEqual(str(self.my_model), expected)
-
     def test_to_dict_method(self):
         """ test for to dictionary method """
         my_model_dict = self.my_model.to_dict()
         self.assertIsInstance(my_model_dict['created_at'], str)
         self.assertIsInstance(my_model_dict['updated_at'], str)
         self.assertEqual(my_model_dict['__class__'], 'BaseModel')
+
+    def test_str_representation(self):
+        """ test for str rrepresentation """
+        expected = "[BaseModel] ({}) {}".format(
+            self.my_model.id, self.my_model.__dict__)
+        self.assertEqual(str(self.my_model), expected)
 
     def test_from_dict_method(self):
         """ test for dictionary methods """
@@ -125,6 +125,12 @@ class TestBaseModelThree(unittest.TestCase):
         state.name = "Egypt"
         self.assertEqual(state.name, "Egypt")
 
+    def test_amenity(self):
+        """ test for amenity object class """
+        amenity = Amenity()
+        amenity.name = "Sea View"
+        self.assertEqual(amenity.name, "Sea View")
+
     def test_city(self):
         """ test for city object class """
         state_id = uuid4()
@@ -133,12 +139,6 @@ class TestBaseModelThree(unittest.TestCase):
         city.state_id = state_id
         self.assertEqual(city.name, "Cairo")
         self.assertEqual(city.state_id, state_id)
-
-    def test_amenity(self):
-        """ test for amenity object class """
-        amenity = Amenity()
-        amenity.name = "Sea View"
-        self.assertEqual(amenity.name, "Sea View")
 
     def test_review(self):
         """ testing review object class"""
