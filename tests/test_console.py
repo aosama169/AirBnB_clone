@@ -11,34 +11,34 @@ import unittest
 
 class TestConsole(unittest.TestCase):
     """
-    checks all required classe are created correctly
+    check all required classe are created correctly
     """
-    def test_class(self):
+    def test_class_console(self):
         """
-        checks all required classes are present
+        check all required classes are present
         """
         city1 = City()
         amenity1 = Amenity()
         state1 = State()
-        rev1 = Review()
+        review1 = Review()
         place1 = Place()
         self.assertEqual(city1.__class__.__name__, "City")
         self.assertEqual(amenity1.__class__.__name__, "Amenity")
         self.assertEqual(state1.__class__.__name__, "State")
-        self.assertEqual(rev1.__class__.__name__, "Review")
+        self.assertEqual(review1.__class__.__name__, "Review")
         self.assertEqual(place1.__class__.__name__, "Place")
 
-    def test_father(self):
+    def test_module_classes(self):
         """
-        checks all required classe inherit correct from BaseModel
+        check all required classe inherit correct from BaseModel
         """
         city1 = City()
         amenity1 = Amenity()
         state1 = State()
-        rev1 = Review()
+        review1 = Review()
         place1 = Place()
         self.assertTrue(issubclass(city1.__class__, BaseModel))
         self.assertTrue(issubclass(amenity1.__class__, BaseModel))
         self.assertTrue(issubclass(state1.__class__, BaseModel))
-        self.assertTrue(issubclass(rev1.__class__, BaseModel))
+        self.assertTrue(issubclass(review1.__class__, BaseModel))
         self.assertTrue(issubclass(place1.__class__, BaseModel))
